@@ -1,4 +1,13 @@
 import React, { Component } from "react";
+// import {
+//   Card,
+//   CardImg,
+//   CardImgOverlay,
+//   CardText,
+//   CardBody,
+//   CardTitle,
+//   CardHeader,
+// } from "reactstrap";
 import dateFormat from "dateformat";
 
 class StaffDetail extends Component {
@@ -26,20 +35,38 @@ class StaffDetail extends Component {
       //trường hợp person không phải là null
       return (
         <div>
-          <h4>Họ và tên: {person.name}</h4>
+          <h4 className="font-weight-bold">Họ và tên: {person.name}</h4>
           <ul className="list-unstyled">
             <li className="mt-4">
-              Ngày sinh:
-              {dateFormat(person.doB, "dd/mm/yyyy")}
+              <strong>Ngày sinh:</strong>{" "}
+              <span className="text-primary font-weight-bold">
+                {dateFormat(person.doB, "dd/mm/yyyy")}
+              </span>
             </li>
             <li className="mt-1">
-              Ngày vào công ty: {dateFormat(person.startDate, "dd/mm/yyyy")}
+              <strong>Ngày vào công ty:</strong>{" "}
+              <span className="text-primary font-weight-bold">
+                {dateFormat(person.startDate, "dd/mm/yyyy")}
+              </span>
             </li>
-            <li className="mt-1">Phòng ban: {person.department.name}</li>
             <li className="mt-1">
-              Số ngày nghỉ còn lại: {person.annualLeave}{" "}
+              <strong>Phòng ban:</strong>{" "}
+              <span className="text-primary font-weight-bold">
+                {person.department.name}
+              </span>
             </li>
-            <li className="mt-1">Số ngày đã làm thêm: {person.overTime}</li>
+            <li className="mt-1">
+              <strong>Số ngày nghỉ còn lại:</strong>{" "}
+              <span className="text-primary font-weight-bold">
+                {person.annualLeave}
+              </span>
+            </li>
+            <li className="mt-1">
+              <strong>Số ngày đã làm thêm:</strong>{" "}
+              <span className="text-primary font-weight-bold">
+                {person.overTime}
+              </span>
+            </li>
           </ul>
         </div>
       );
