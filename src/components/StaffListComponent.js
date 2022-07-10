@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card } from "reactstrap";
+import StaffDetail from "./StaffDetailComponent";
 
 //TẠO StaffList Component
 class StaffList extends Component {
@@ -11,13 +12,17 @@ class StaffList extends Component {
     };
   }
 
+  //tạo method cập nhật state selectedStaff
+  onStaffSelect(person) {
+    this.setState({ selectedStaff: person });
+  }
+
   //hàm hiển thị component
   render() {
-    //hiển thị từng nhân viên trong staffs.jsx
     const list = this.props.staffs.map((staff) => {
       return (
         <div key={staff.id} className="col-12 col-md-5 col-lg-3 m-1">
-          <Card>
+          <Card onClick={() => this.onStaffSelect(staff)}>
             <p>{staff.name}</p>
           </Card>
         </div>
@@ -27,6 +32,8 @@ class StaffList extends Component {
     return (
       <div className="container">
         <div className="row">{list}</div>
+
+        <StaffDetail selectedStaff={this.state.selectedStaff} />
       </div>
     );
   }
