@@ -36,6 +36,62 @@ class App extends Component {
             </li>
           </ul>
         </nav>
+        {/* Chọn chế độ hiển thị  */}
+        <div className="container">
+          <div className="form-group row m-3">
+            <div className="custom-control custom-radio col-sm-2">
+              <input
+                type="radio"
+                className="custom-control-input"
+                id="two-col"
+                name="view-option"
+              />
+              <label className="custom-control-label" htmlFor="two-col">
+                2 hàng
+              </label>
+            </div>
+            <div className="custom-control custom-radio col-sm-2">
+              <input
+                type="radio"
+                className="custom-control-input"
+                id="three-col"
+                name="view-option"
+              />
+              <label className="custom-control-label" htmlFor="three-col">
+                3 hàng
+              </label>
+            </div>
+            <div className="custom-control custom-radio col-sm-2">
+              <input
+                type="radio"
+                className="custom-control-input"
+                id="six-col"
+                name="view-option"
+              />
+              <label className="custom-control-label" htmlFor="six-col">
+                6 hàng
+              </label>
+            </div>
+            <div className="custom-control custom-radio col-sm-2">
+              <input
+                type="radio"
+                className="custom-control-input"
+                id="default-col"
+                name="view-option"
+              />
+              <label className="custom-control-label" htmlFor="default-col">
+                Mặc định
+              </label>
+            </div>
+            <button
+              type="button"
+              className="btn btn-success col-sm-2"
+              id="submit-btn"
+            >
+              Áp dụng
+            </button>
+          </div>
+        </div>
 
         {/* Hiển thị danh sách nhân viên  */}
         <StaffList staffs={this.state.staffs} />
