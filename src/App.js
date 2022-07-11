@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Navbar, NavbarBrand } from "reactstrap";
 import "./App.css";
 import StaffList from "./components/StaffListComponent";
 import { STAFFS } from "./shared/staffs";
@@ -10,6 +9,7 @@ class App extends Component {
 
     this.state = {
       staffs: STAFFS,
+      viewMode: "default",
     };
   }
 
@@ -36,6 +36,7 @@ class App extends Component {
             </li>
           </ul>
         </nav>
+
         {/* Chọn chế độ hiển thị  */}
         <div className="container">
           <div className="form-group row m-3">
@@ -87,6 +88,17 @@ class App extends Component {
               type="button"
               className="btn btn-success col-sm-2"
               id="submit-btn"
+              onClick={() => {
+                if (document.getElementById("two-col").checked) {
+                  this.setState({ viewMode: "two" });
+                } else if (document.getElementById("three-col").checked) {
+                  this.setState({ viewMode: "three" });
+                } else if (document.getElementById("six-col").checked) {
+                  this.setState({ viewMode: "six" });
+                } else if (document.getElementById("default-col").checked) {
+                  this.setState({ viewMode: "default" });
+                }
+              }}
             >
               Áp dụng
             </button>
@@ -94,7 +106,7 @@ class App extends Component {
         </div>
 
         {/* Hiển thị danh sách nhân viên  */}
-        <StaffList staffs={this.state.staffs} />
+        <StaffList staffs={this.state.staffs} viewMode={this.state.viewMode} />
 
         {/* FOOTER  */}
         <footer>
