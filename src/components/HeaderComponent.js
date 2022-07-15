@@ -28,7 +28,7 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar className="bg-primary navbar-dark" expand="md">
+        <Navbar dark expand="md">
           {/* Thuộc tính expand chỉ định Navbar sẽ được hiển thị ở dạng đầy đủ chỉ
           cho kích thước màn hình được cấu hình - ở đây là md - màn hình trung
           bình trở lên */}

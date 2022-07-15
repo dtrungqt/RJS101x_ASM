@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Header from "./components/HeaderComponent";
+import Footer from "./components/FooterComponent";
 import StaffList from "./components/StaffListComponent";
 import { STAFFS } from "./shared/staffs";
 import { BrowserRouter } from "react-router-dom";
@@ -29,6 +30,7 @@ class App extends Component {
           />
 
           {/* FOOTER  */}
+          <Footer />
         </div>
       </BrowserRouter>
     );
