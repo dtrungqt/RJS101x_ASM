@@ -1,43 +1,51 @@
-import React, { Component } from "react";
-import { Card } from "reactstrap";
-import StaffDetail from "./StaffDetailComponent";
+import React from "react";
+import {
+  Card,
+  CardImg,
+  CardImgOverlay,
+  CardTitle,
+  Breadcrumb,
+  BreadcrumbItem,
+  CardBody,
+} from "reactstrap";
+// import { Link } from "react-router-dom";
+
+//tạo Component hiển thị mỗi staff
+function RenderStaffItem({ staff }) {
+  return (
+    <Card className="mb-3">
+      {/* <Link to={`/menu/${staff.id}`}> */}
+
+      <CardImg width="100%" src={staff.image} alt={staff.name} />
+      <p className="text-center text-name">{staff.name}</p>
+
+      {/* </Link> */}
+    </Card>
+  );
+}
 
 //TẠO StaffList Component
-class StaffList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedStaff: null,
-    };
-  }
-
-  //tạo method cập nhật state selectedStaff
-  onStaffSelect(person) {
-    this.setState({ selectedStaff: person });
-  }
-
-  //hàm hiển thị component
-  render() {
-    //hiển thị từng nhân viên trong staffs.jsx
-    const list = this.props.staffs.map((staff) => {
-      return (
-        <div key={staff.id} className="col-12 col-md-5 col-lg-3 m-1">
-          <Card onClick={() => this.onStaffSelect(staff)}>
-            <p>{staff.name}</p>
-          </Card>
-        </div>
-      );
-    });
-
+function StaffList(props) {
+  const staffList = props.staffs.map((staff) => {
     return (
-      <div className="container">
-        <div className="row">{list}</div>
-
-        <StaffDetail selectedStaff={this.state.selectedStaff} />
+      <div key={staff.id} className="col-6 col-md-4 col-lg-2">
+        <RenderStaffItem staff={staff} />
       </div>
     );
-  }
+  });
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <h3>Nhân viên</h3>
+          <hr />
+        </div>
+      </div>
+
+      <div className="row">{staffList}</div>
+    </div>
+  );
 }
 
 export default StaffList;
