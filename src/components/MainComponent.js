@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import StaffList from "./StaffListComponent";
+import StaffDetail from "./StaffDetailComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
-import { STAFFS } from "../shared/staffs";
+import Department from "./DepartmentComponent";
+import { STAFFS, DEPARTMENTS } from "../shared/staffs";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 //TẠO StaffList Component
@@ -12,15 +14,30 @@ class Main extends Component {
 
     this.state = {
       staffs: STAFFS,
+      departments: DEPARTMENTS,
     };
   }
 
   //hàm hiển thị component
   render() {
-    //tạo functional component
+    //tạo functional component để truyền thuộc tính vào StaffList Component
     const HomePage = () => {
       return <StaffList staffs={this.state.staffs} />;
     };
+
+    //tạo component để truyền thuộc tính vào StaffDetail
+    const StaffWithId = ({ match }) => {
+      return (
+        <StaffDetail
+          staff={
+            this.state.staffs.filter(
+              (staff) => staff.id === parseInt(match.params.staffId, 10)
+            )[0]
+          }
+        />
+      );
+    };
+
     return (
       <div>
         {/* Hiển thị Navbar  */}
@@ -29,12 +46,19 @@ class Main extends Component {
         {/* Router  */}
         <Switch>
           <Route path="/home" component={HomePage} />
-          {/* <Route
+          <Route path="/menu/:staffId" component={StaffWithId} />
+          <Route
             exact
             path="/department"
-            component={() => <Menu dishes={this.state.dishes} />}
+            component={() => (
+              <Department
+                staffs={this.state.staffs}
+                departments={this.state.departments}
+              />
+            )}
           />
-          <Route path="/menu/:dishId" component={DishWithId} />
+          {/* 
+          
           <Route exact path="/contactus" component={Contact} />
           <Route
             exact

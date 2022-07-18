@@ -8,18 +8,16 @@ import {
   BreadcrumbItem,
   CardBody,
 } from "reactstrap";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //tạo Component hiển thị mỗi staff
 function RenderStaffItem({ staff }) {
   return (
     <Card className="mb-3">
-      {/* <Link to={`/menu/${staff.id}`}> */}
-
-      <CardImg width="100%" src={staff.image} alt={staff.name} />
-      <p className="text-center text-name">{staff.name}</p>
-
-      {/* </Link> */}
+      <Link to={`/menu/${staff.id}`}>
+        <CardImg width="100%" src={staff.image} alt={staff.name} />
+        <p className="text-center text-name">{staff.name}</p>
+      </Link>
     </Card>
   );
 }
