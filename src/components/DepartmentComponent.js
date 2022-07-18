@@ -11,8 +11,8 @@ import {
 import { Link } from "react-router-dom";
 
 //hiển thị các phòng ban
-function RenderDepartment({ departments }, { staffs }) {
-  const departmentList = departments.map(function (department) {
+function RenderDepartment({ departments }) {
+  const departmentList = departments.map((department) => {
     return (
       <div className="col-12 col-md-6 col-lg-4 mb-3" key={department.id}>
         <Card>
@@ -43,7 +43,7 @@ function Department(props) {
         </Breadcrumb>
       </div>
 
-      <RenderDepartment staffs={props.staffs} departments={props.departments} />
+      <RenderDepartment departments={props.departments} />
     </div>
   );
 }

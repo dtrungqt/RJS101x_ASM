@@ -4,6 +4,7 @@ import StaffDetail from "./StaffDetailComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import Department from "./DepartmentComponent";
+import Salary from "./SalaryComponent";
 import { STAFFS, DEPARTMENTS } from "../shared/staffs";
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -51,20 +52,14 @@ class Main extends Component {
             exact
             path="/department"
             component={() => (
-              <Department
-                staffs={this.state.staffs}
-                departments={this.state.departments}
-              />
+              <Department departments={this.state.departments} />
             )}
           />
-          {/* 
-          
-          <Route exact path="/contactus" component={Contact} />
           <Route
             exact
-            path="/aboutus"
-            component={() => <About leaders={this.state.leaders} />} 
-          />*/}
+            path="/salary"
+            component={() => <Salary staffs={this.state.staffs} />}
+          />
           {/* Sử dụng exact có nghĩa là path phải khớp chính xác với path sau đó (ở
           đây là /menu). Bởi vì ta định tuyến (route) đến DishDetail Component
           và sử dụng một đường dẫn bắt đầu bằng /menu */}
