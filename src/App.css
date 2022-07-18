@@ -61,3 +61,8 @@ address {
 .dark-color {
   background-color: #eef;
 }
+
+.card-select:hover {
+  opacity: 1;
+  background-color: #999;
+}
