@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Card,
-  CardImg,
-  CardImgOverlay,
   CardTitle,
   Breadcrumb,
   BreadcrumbItem,
@@ -18,7 +16,7 @@ function RenderSalary({ info }) {
 
     return (
       <div className="col-12 col-md-6 col-lg-4 mb-3" key={staff.id}>
-        <Card>
+        <Card className="dark-color">
           <CardTitle className="p-1">{staff.name}</CardTitle>
           <CardBody>
             <p>Mã nhân viên: {staff.id}</p>

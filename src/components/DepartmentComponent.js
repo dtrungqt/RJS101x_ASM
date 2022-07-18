@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Card,
-  CardImg,
-  CardImgOverlay,
   CardTitle,
   Breadcrumb,
   BreadcrumbItem,
@@ -15,14 +13,14 @@ function RenderDepartment({ departments }) {
   const departmentList = departments.map((department) => {
     return (
       <div className="col-12 col-md-6 col-lg-4 mb-3" key={department.id}>
-        <Card>
+        <Card className="dark-color">
           <CardTitle className="p-1">{department.name}</CardTitle>
           <CardBody>Số lượng nhân viên: {department.numberOfStaff}</CardBody>
         </Card>
       </div>
     );
   });
-  console.log(departmentList);
+
   return (
     <div className="container">
       <div className="row ">{departmentList}</div>

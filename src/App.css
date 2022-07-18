@@ -57,3 +57,7 @@ address {
   border-radius: 10px;
   background-color: #eee;
 }
+
+.dark-color {
+  background-color: #eef;
+}
