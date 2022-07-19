@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Card,
   CardTitle,
@@ -8,6 +8,35 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
+//hàm sắp xếp mảng theo giá trị ID tăng dần
+function ascendingArray(array) {
+  let ascendingArr = array;
+  for (let i = 0; i < ascendingArr.length; i++) {
+    const temp = ascendingArr[i];
+    let j;
+    for (j = i - 1; j >= 0 && ascendingArr[j].id > temp.id; j--) {
+      ascendingArr[j + 1] = ascendingArr[j];
+    }
+    ascendingArr[j + 1] = temp;
+  }
+  return ascendingArr;
+}
+
+//hàm sắp xếp mảng theo giá trị ID tăng dần
+function descendingArray(array) {
+  let ascendingArr = array;
+  for (let i = 0; i < ascendingArr.length; i++) {
+    const temp = ascendingArr[i];
+    let j;
+    for (j = i - 1; j >= 0 && ascendingArr[j].id < temp.id; j--) {
+      ascendingArr[j + 1] = ascendingArr[j];
+    }
+    ascendingArr[j + 1] = temp;
+  }
+  return ascendingArr;
+}
+
+//Component hiển thị thông tin lương mỗi nhân viên
 function RenderSalary({ info }) {
   const salaryList = info.map((staff) => {
     const salary = Math.round(
@@ -40,22 +69,74 @@ function RenderSalary({ info }) {
   );
 }
 
-function Salary({ staffs }) {
-  return (
-    <div className="container">
-      <div className="row">
-        <Breadcrumb>
-          <BreadcrumbItem>
-            <Link to="/home">Nhân Viên</Link>
-          </BreadcrumbItem>
+class Salary extends Component {
+  constructor(props) {
+    super(props);
 
-          <BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
-        </Breadcrumb>
+    this.state = {
+      sortMode: "Default",
+    };
+  }
+
+  onSortSelect(selected) {
+    this.setState({ sortMode: selected });
+  }
+
+  render() {
+    const staffsList = this.props.staffs;
+
+    console.log(this.state.sortMode);
+    //chọn giá trị để hiển thị
+    let viewMode;
+    if (this.state.sortMode === "Default") viewMode = staffsList;
+    else if (this.state.sortMode === "Ascending ID")
+      viewMode = ascendingArray(staffsList);
+    else if (this.state.sortMode === "Descending ID")
+      viewMode = descendingArray(staffsList);
+    console.log(typeof staffsList);
+    console.log(staffsList);
+
+    return (
+      <div className="container">
+        <div className="row">
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/home">Nhân Viên</Link>
+            </BreadcrumbItem>
+
+            <BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
+          </Breadcrumb>
+        </div>
+
+        {/* Thanh sắp xếp  */}
+        <div className="row mb-3">
+          <div className="col-md-7"></div>
+          <label
+            htmlFor="input-type"
+            className="col-md-2 col-form-label pl-5 pr-0"
+          >
+            <strong>Sort by:</strong>
+          </label>
+          <div className="col-md-3">
+            <select
+              className="form-control"
+              id="input-type"
+              onChange={() =>
+                this.onSortSelect(document.getElementById("input-type").value)
+              }
+            >
+              <option>Default</option>
+              <option>Ascending ID</option>
+              <option>Descending ID</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Hiển thị thông tin lương  */}
+        <RenderSalary info={viewMode} />
       </div>
-
-      <RenderSalary info={staffs} />
-    </div>
-  );
+    );
+  }
 }
 
 export default Salary;
